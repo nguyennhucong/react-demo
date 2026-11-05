@@ -20,8 +20,16 @@ class MYComponents extends React.Component {
     } 
     
     handelOnMouseOver = (event) => {
-        console.log('mouse over button');
-        console.log(event.pageX, event.pageY);
+        console.log('hovered button', event.target.value);
+        this.setState({
+            name: event.target.value
+        })
+    }
+
+    handelPreventDefault = (event) => {
+        event.preventDefault();
+        console.log(this.state);
+        
     }
  
     render() {
@@ -29,7 +37,13 @@ class MYComponents extends React.Component {
             <div>
                 My name is {this.state.name}, I am {this.state.age} years old and I live in {this.state.address}.
                 <button onClick={(event) => this.handelClich(event)}>Click me!</button>
-                <button onMouseOver={(event) => this.handelOnMouseOver(event)}>Hover me!</button>
+                
+                <form onSubmit={(event) => this.handelPreventDefault(event)}>
+                    <input type="text" 
+                        onChange={(event) => this.handelOnMouseOver(event)} 
+                    />
+                    <button>Hover over me!</button>
+                </form>
             </div>
         );
     }
