@@ -2,21 +2,23 @@ import React from "react";
 
 class UserInfo extends React.Component {
         state = {
-        name: 'cong.nguyen',
+        name: '',
         address: 'HN',
-        age: 35
+        age: ''
     };
     
     handelOnMouseOver = (event) => {
-        console.log('hovered button', event.target.value);
-        this.setState({
-            name: event.target.value
-        })
+        this.setState({ name: event.target.value });
     }
 
-    handelPreventDefault = (event) => {
+    handelOnsubmit = (event) => {
         event.preventDefault();
-        console.log(this.state);
+        this.props.handleAddNewUser({
+            id: Math.floor(Math.random() * 1001),
+            name: this.state.name,
+            age: this.state.age,
+            address: this.state.address
+        })
         
     }
     render() {
@@ -24,13 +26,13 @@ class UserInfo extends React.Component {
             <div>
                 My name is {this.state.name}, I am {this.state.age} years old and I live in {this.state.address}.
                 
-                <form onSubmit={(event) => this.handelPreventDefault(event)}>
+                <form onSubmit={(event) => this.handelOnsubmit(event)}>
                     <input 
                         value={this.state.name}
                         type="text" 
                         onChange={(event) => this.handelOnMouseOver(event)} 
                     />
-                    <button>Hover over me!</button>
+                    <button>Submit</button>
                 </form>
             </div>    
 
