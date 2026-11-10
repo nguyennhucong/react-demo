@@ -1,5 +1,6 @@
 import React from "react";
 import './DisplayInfo.scss';
+import logo from '../logo.svg';
 
 class DisplayInfo extends React.Component {
 
@@ -18,6 +19,7 @@ class DisplayInfo extends React.Component {
 
         return (
             <div className="display-info-container">
+                <img src={logo} className="App-logo" alt="logo" />
                 <div>
                     <button type="button" onClick={this.handleToggleList}>
                         {this.state.isShowListUser ? 'Hide list users' : 'Show list users'}
